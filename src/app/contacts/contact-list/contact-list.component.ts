@@ -8,8 +8,8 @@ import { Contact } from '../contact.model';
 })
 export class ContactListComponent {
   contacts: Contact[] = [
-    new Contact("1", "R. Kent Jackson", "jacksonk@byui.edu", "208-496-3771", "../assets/img/jacksonk.jpg", null),
-    new Contact("2", "Rex Barzee", "barzeer@byui.edu", "208-496-3768", "../assets/img/barzeer.jpg", null)
+    new Contact("1", "R. Kent Jackson", "jacksonk@byui.edu", "208-496-3771", "../../assets/image/jacksonk.jpg", null),
+    new Contact("2", "Rex Barzee", "barzeer@byui.edu", "208-496-3768", "../../assets/image/barzeer.jpg", null)
 
 
   ];
