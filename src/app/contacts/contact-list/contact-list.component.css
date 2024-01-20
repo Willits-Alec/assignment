@@ -1,0 +1,13 @@
+.panel {
+font-size: 24PX;
+}
+
+.contact-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.contact-img {
+    border-radius: 20%;
+    width: 8em;
+}
