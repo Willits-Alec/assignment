@@ -26,7 +26,7 @@ export class MessageEditComponent {
       this.addMessageEvent.emit(message);
     }
   }
-  
+
 
   onClear() {
     if (this.subject && this.subject.nativeElement) {
