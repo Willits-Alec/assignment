@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../message.model';
 import { ChangeDetectorRef } from '@angular/core';
+import { MessageService } from '../messages.service';
 
 @Component({
   selector: 'app-message-list',
   templateUrl: './message-list.component.html',
   styleUrl: './message-list.component.css'
 })
+
 export class MessageListComponent implements OnInit {
-  
-  messages: Message[] = [
-    new Message('1', 'message', 'you can now see the first message.', 'Mike'),
-    new Message('2', 'message', 'you can now see the second message.', 'Sally'),
-    new Message('3', 'message', 'you can now see the third message.', 'Jim'),
-  ];
+  messages: Message[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private messageService: MessageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.messages = this.messageService.getMessages();
+
+    
+  }
 
   onAddMessage(message: Message) {
     this.messages.push(message);
-    this.cdr.detectChanges();
   }
 
   onDeleteLastMessage() {

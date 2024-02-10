@@ -24,6 +24,12 @@
           {{ document.url }}
         </span>
       </div>
+
+      <div *ngIf="document">
+        <h2>{{ document.name }}</h2>
+        <p>Description: {{ document.description }}</p>
+        <p>URL: {{ document.url }}</p>
+      </div>
     </div>
   </div>
 </div>
