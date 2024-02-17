@@ -1,0 +1,20 @@
+<div>
+    <h2>Edit Document</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="document.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" [(ngModel)]="document.description" name="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="url">URL:</label>
+        <input type="text" class="form-control" id="url" [(ngModel)]="document.url" name="url">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+    </form>
+  </div>
+  

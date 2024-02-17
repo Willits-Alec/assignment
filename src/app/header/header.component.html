@@ -7,14 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">WeLearn CMS</a>
+      <a class="navbar-brand" routerLink="/">WeLearn CMS</a>
     </div>
 
     <div class="collapse navbar-collapse" [ngClass]="{ 'in': isNavbarCollapsed}">
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="onSelected('documents')">Documents</a></li>
-        <li><a href="#" (click)="onSelected('messages')">Messages</a></li>
-        <li><a href="#" (click)="onSelected('contacts')">Contacts</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/documents']">Documents</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/messages']">Messages</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/contacts']">Contacts</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -28,3 +28,6 @@
           </ul>
         </li>
       </ul>
+    </div>
+  </div>
+</nav>

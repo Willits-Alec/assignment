@@ -6,8 +6,8 @@
                 <img [src]="contact.imageUrl" class="contact-image">
             </div>
             <div class="col text-right">
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <a class="btn btn-info" [routerLink]="['/contacts', contact.id, 'edit']">Edit</a>
+                <button class="btn btn-danger" (click)="onDelete()">Delete</button>
             </div>
         </div>
     </div>
