@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Document } from '../document.model';
-import { DocumentService } from '../documents.service'
+import { DocumentService } from '../../documents/documents.service';
 
 @Component({
   selector: 'app-document-edit',

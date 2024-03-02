@@ -25,4 +25,8 @@ export class ContactListComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  onSelected(contact: Contact): void {
+    console.log('Selected contact:', contact);
+  }
+
 }

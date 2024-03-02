@@ -1,26 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Document } from '../document.model';
 import { WindRefService } from '../../wind-ref.service';
 import { Router } from '@angular/router';
-import { DocumentService } from '../documents.service'
+import { DocumentService } from '../../documents/documents.service';
 
 @Component({
   selector: 'app-document-detail',
   templateUrl: './document-detail.component.html',
   styleUrls: ['./document-detail.component.css']
 })
-export class DocumentDetailComponent {
+export class DocumentDetailComponent implements OnInit {
   @Input() document: Document;
   nativeWindow: any;
 
   constructor(
     private windRefService: WindRefService,
-    private documentService: DocumentService, // Inject DocumentService
+    private documentService: DocumentService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.nativeWindow = this.windRefService.getNativeWindow();
+    console.log('Received Document:', this.document);
   }
   
   onView(url: string): void {
