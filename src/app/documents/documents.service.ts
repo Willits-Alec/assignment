@@ -28,13 +28,11 @@ export class DocumentService {
 
   addDocument(newDoc: Document) {
     if (newDoc === null || newDoc === undefined) return;
-    this.maxDocumentId+++;
+    this.maxDocumentId++;
     newDoc.id = '$(this.maxDocumentId)';
     this.documents.push(newDoc);
     this.documentListChangedEvent.next(this.documents.slice());
 }
-
-
   updateDocument(original: Document, newDoc: Document){
     if (
       newDoc === null ||

@@ -26,13 +26,45 @@ export class ContactsService {
     return this.contacts.find((c) => c.id === id);
   }
 
-  deleteContact(contact: Contact): void {
+  deleteContact(contact: Contact) {
+    if (!contact) return;
     const index = this.contacts.indexOf(contact);
-    if (index !== -1) {
+    if (index < 0 ) return;
       this.contacts.splice(index, 1);
-      this.contactsListChangedEvent.next([...this.contacts]);
+      this.contactsListChangedEvent.next(this.contacts.slice());
     }
+
+    getMaxId(): number {
+      let maxId = 0;
+      this.contacts.forEach((c) => {
+        if (+c.id > maxId) maxId = +c.id;
+      });
+      return maxId;
+    }
+
+    addContact(newContact: Contact) {
+      if (newContact === null || newContact === undefined) return;
+      this.maxContactId++;
+      newContact.id = '$(this.newContactId)';
+      this.contacts.push(newContact);
+      this.contactsListChangedEvent.next(this.contacts.slice());
   }
 
+  updateContact(original: Contact, newContact: Contact){
+    if (
+      newContact === null ||
+      newContact === undefined ||
+      original === null ||
+      original === undefined
+    ) {
+      return;
+    }
+    const index = this.contacts.indexOf(original);
+    if (index < 0) return;
 
-}
+    newContact.id = original.id;
+    this.contacts.push(newContact);
+    this.contactsListChangedEvent.next(this.contacts.slice());
+  }
+
+  }
