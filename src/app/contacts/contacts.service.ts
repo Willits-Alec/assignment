@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 import { Subject } from 'rxjs';
@@ -7,12 +7,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ContactsService {
-  private contacts: Contact[] = MOCKCONTACTS; 
-
   contactsListChangedEvent = new Subject<Contact[]>();
   contactSelectedEvent = new Subject<Contact>();
 
-  constructor() {}
+  private contacts: Contact[] = MOCKCONTACTS;
+  private maxContactId: number;
+
+  constructor() {
+    this.contacts = MOCKCONTACTS;
+    this.maxContactId = this.getMaxId();
+  }
 
   getContacts(): Contact[] {
     return this.contacts.slice();

@@ -7,9 +7,10 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DocumentService {
-  private documents: Document[] = MOCKDOCUMENTS;
   documentListChangedEvent = new Subject<Document[]>();
   documentSelectedEvent = new Subject<Document>();
+
+  private documents: Document[] = [];
   private maxDocumentId: number;
 
   constructor() {
@@ -25,44 +26,48 @@ export class DocumentService {
     return this.documents.find((doc) => doc.id === id);
   }
 
-  addDocument(document: Document): void {
-    if (!document) {
-        return;
-    }
-
-    this.maxDocumentId++;
-    document.id = this.maxDocumentId.toString(); 
-    this.documents.push(document);
-
-    const documentsListClone = this.documents.slice();
-    this.documentListChangedEvent.next(documentsListClone);
+  addDocument(newDoc: Document) {
+    if (newDoc === null || newDoc === undefined) return;
+    this.maxDocumentId+++;
+    newDoc.id = '$(this.maxDocumentId)';
+    this.documents.push(newDoc);
+    this.documentListChangedEvent.next(this.documents.slice());
 }
 
 
-  updateDocument(updatedDocument: Document): void {
-    const index = this.documents.findIndex(doc => doc.id === updatedDocument.id);
-    if (index !== -1) {
-      this.documents[index] = updatedDocument;
-      this.documentListChangedEvent.next([...this.documents]);
+  updateDocument(original: Document, newDoc: Document){
+    if (
+      newDoc === null ||
+      newDoc === undefined ||
+      original === null ||
+      original === undefined
+    ) {
+      return;
     }
+    const index = this.documents.indexOf(original);
+    if (index < 0) return;
+
+    newDoc.id = original.id;
+    this.documents.push(newDoc);
+    this.documentListChangedEvent.next(this.documents.slice());
   }
 
   deleteDocument(document: Document): void {
+    if (!document) return;
     const index = this.documents.indexOf(document);
     if (index !== -1) {
       this.documents.splice(index, 1);
-      this.documentListChangedEvent.next([...this.documents]);
+      this.documentListChangedEvent.next(this.documents.slice());
     }
   }
 
-  private getMaxId(): number {
+  getMaxId(): number {
     let maxId = 0;
-    for (const doc of this.documents) {
-      const currentId = parseInt(doc.id, 10);
-      if (!isNaN(currentId) && currentId > maxId) {
-        maxId = currentId;
-      }
-    }
+    this.documents.forEach((d) => {
+      if (+d.id > maxId) maxId = +d.id;
+    });
     return maxId;
   }
+
+
 }
