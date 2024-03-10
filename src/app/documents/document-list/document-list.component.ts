@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../documents.service';
 import { Subscription } from 'rxjs';
@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.css']
 })
-export class DocumentListComponent implements OnInit {
-  documents: Document[];
+export class DocumentListComponent implements OnInit, OnDestroy {
+  documents: Document[] = [];
   private subscription: Subscription;
 
   constructor(private documentService: DocumentService) {}

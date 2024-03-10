@@ -2,8 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../../documents/documents.service';
 import { NgForm } from '@angular/forms'; 
-import { ActivatedRoute } from '@angular/router';
-import { JsonPipe } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-document-edit',
