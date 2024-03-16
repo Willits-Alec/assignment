@@ -22,7 +22,7 @@ export class ContactEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       if (this.id === undefined || this.id === null) {
