@@ -27,7 +27,7 @@ export class ContactsComponent {
 
     this.http.get<any>(contactsUrl, { headers }).subscribe((response) => {
       this.contacts = Object.values(response.record);
-      this.contactsListChangedEvent.next(this.contacts);
+      // this.contactsListChangedEvent.next(this.contacts);
       console.log(this.contacts);
     })
     
