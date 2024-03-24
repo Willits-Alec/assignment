@@ -57,14 +57,12 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 // Tell express to map the default route ('/') to the index route
 app.use('/', index);
+
+
+// ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 app.use('/messages', messageRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/documents', documentsRoutes);
-
-// ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
-const messageRoutes = require('./server/routes/messages');
-const contactRoutes = require('./server/routes/contacts');
-const documentRoutes = require('./server/routes/documents');
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
